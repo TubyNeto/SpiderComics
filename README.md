@@ -1,2 +1,0 @@
-# SpiderComics
-Created with CodeSandbox
