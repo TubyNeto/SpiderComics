@@ -1,21 +1,38 @@
 <template>
-  <div class="hello">
-    <button @click="initialMethod" class="button is-rounded is-large is-warning">Upload</button>
+  <div>
+
+    <div class="file is-boxed is-large is-warning is-centered">
+      <label class="file-label">
+        <input class="file-input" type="file" name="resume" @change='getImage'>
+        <span class="file-cta">
+          UPLOAD
+        </span>
+      </label>
+    </div>
+   
+    <img :src="frame">
+
   </div>
 </template>
 
 <script>
 export default {
   name: "HelloWorld",
-  data () {
+  data() {
     return {
-      next_scene: false
-    }
-  }, 
+      next_scene: false,
+      frame: null
+    };
+  },
   methods: {
-    initialMethod() {
-      alert("Aqui sera feito o Upload");
-      this.$emit('next-scene', true)
+    getImage(e) {
+      let image = e.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = e => {    
+        this.$emit("frame", e.target.result);
+        this.$emit("next-scene", true);
+      };
     }
   },
   props: {

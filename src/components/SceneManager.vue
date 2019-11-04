@@ -1,7 +1,10 @@
 <template>
   <div>
-    <HelloWorld v-if="!passScene" @next-scene="passScene = $event"></HelloWorld>
-    <Reader v-else></Reader>
+    <HelloWorld v-if="!passScene" 
+      @next-scene="passScene = $event"
+      @frame="framer = $event"
+      ></HelloWorld>
+    <Reader v-else :frame="framer"></Reader>
   </div>
 </template>
 
@@ -12,7 +15,8 @@ import HelloWorld from "./HelloWorld.vue";
 export default {
   data() {
     return {
-      passScene: false
+      passScene: false,
+      framer: null
     };
   },
   components: {
