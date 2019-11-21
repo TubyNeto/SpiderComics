@@ -3,14 +3,12 @@
 
     <div class="file is-boxed is-large is-warning is-centered">
       <label class="file-label">
-        <input class="file-input" type="file" name="resume" @change='getImage'>
+        <input class="file-input" type="file" name="resume" multiple @change='getImage'>
         <span class="file-cta">
           UPLOAD
         </span>
       </label>
     </div>
-   
-    <img :src="frame">
 
   </div>
 </template>
@@ -21,18 +19,25 @@ export default {
   data() {
     return {
       next_scene: false,
-      frame: null
+      frame: [],
+      oie: [0,1,2,3]
     };
   },
   methods: {
     getImage(e) {
-      let image = e.target.files[0];
-      let reader = new FileReader();
-      reader.readAsDataURL(image);
-      reader.onload = e => {    
-        this.$emit("frame", e.target.result);
-        this.$emit("next-scene", true);
-      };
+      let images = Array.from(e.target.files)
+
+      for (let i = 0; i < images.length; i++) {
+        let image = images[i];
+        let reader = new FileReader();
+        reader.readAsDataURL(image)
+        reader.onload = e => {    
+          this.frame.push(e.target.result)
+          //alert(this.frame)
+          this.$emit("frame", this.frame);
+          this.$emit("next-scene", true);
+        }
+      }
     }
   },
   props: {
