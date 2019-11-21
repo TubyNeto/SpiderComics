@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <button class="buttonX" @click="closeSettings"> X </button>
     <h1>Personalização</h1>
     <br>
@@ -24,7 +24,6 @@
 
 <script>
 export default {
-  name: "App",
   data() {
     return {
       msg: "Gostaria de redimensionar automaticamente a imagem?",
@@ -40,7 +39,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
     h1 {
     font-family: cursive, optima;
     }

@@ -9,7 +9,7 @@
     <div v-else>
 
       <div v-if='readMode'>
-        <button class="is-normal is-primary is-centered" @click='aqui'>CONFIGURAÇÕES</button>
+        <button class="is-primary" @click='aqui'>CONFIGURAÇÕES</button>
         <Reader :frame="framer"></Reader>
       </div>
 
