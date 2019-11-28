@@ -3,7 +3,7 @@
     <button class="buttonX" @click="closeSettings"> X </button>
     <h1>Personalização</h1>
     <br>
-
+    <img center width="50%" src="src/assets/SpiderComicsLogo.jpeg">
     <br>
     <br>
     {{msg2}}
