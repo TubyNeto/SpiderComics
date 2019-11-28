@@ -1,24 +1,17 @@
 <template>
   <div>
-
-    <HelloWorld v-if="!passScene" 
-      @next-scene="passScene = $event"
-      @frame="framer = $event"
-      ></HelloWorld>
+    <HelloWorld v-if="!passScene" @next-scene="passScene = $event" @frame="framer = $event"></HelloWorld>
 
     <div v-else>
-
-      <div v-if='readMode'>
-        <button class="is-primary" @click='aqui'>CONFIGURAÇÕES</button>
+      <div v-if="readMode">
+        <button class="file is-primary" @click="aqui">CONFIGURAÇÕES</button>
         <Reader :frame="framer"></Reader>
       </div>
 
       <div v-else>
-        <Settings @read-mode="readMode = $event"> </Settings> 
+        <Settings @read-mode="readMode = $event"></Settings>
       </div>
-
     </div>
-
   </div>
 </template>
 
@@ -43,8 +36,8 @@ export default {
     pasScene() {
       this.passScene = true;
     },
-    aqui (){
-      this.readMode = false
+    aqui() {
+      this.readMode = false;
     }
   }
 };
