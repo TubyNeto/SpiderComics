@@ -1,24 +1,47 @@
 <template>
-  <div>
-    <button class="buttonX" @click="closeSettings">X</button>
-    <h1>Personalização</h1>
-    <br />
-    <img center width="50%" src="src/assets/SpiderComicsLogo.jpeg" />
-    <br />
-    <br />
-    {{msg2}}
-    <br />
-    <button>Tema claro</button>
-    <pre><button>Tema Escuro</button></pre>
-    {{msg3}}
-    <br />
-    <button>Horizontal</button>
-    <pre><button>Vertical</button></pre>
-    {{msg}}
-    <br />
-    <button>Sim</button>
-    <pre><button>Não</button></pre>
-    <br />
+  <div id="app">
+    <SceneManager></SceneManager>
+    <div class="modal is-active" id="option">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Opções</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <h2>Modo de leitura</h2>
+          <br />
+          <br />
+
+          <div class="controle">
+            <label class="radio">
+              <input type="radio" name="foobar" />
+              Vertical
+            </label>
+            <br />
+            <label class="radio">
+              <input type="radio" name="foobar" checked />
+              Horizontal
+            </label>
+          </div>
+
+          <hr />
+          <label class="checkbox">
+            Modo escuro
+            <input type="checkbox" />
+          </label>
+
+          <hr />
+          <label class="checkbox">
+            Redimensionar imagens
+            <input type="checkbox" />
+          </label>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success">Salvar</button>
+        </footer>
+      </div>
+    </div>
   </div>
 </template>
 
