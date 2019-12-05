@@ -1,11 +1,11 @@
 <template>
-  <div>
+<div v-if="!openedSettings">
     <div class="field has-addons has-addons-centered">
       <section class="hero">
         <div class="hero is-light">
           <nav class="level">
-            <a class="navbar">
-              <img width="60px" src="https://diyuehb.com/images/angry-saber-4.png" />
+           <a class="navbar">
+              <img width="60px" src="https://diyuehb.com/images/angry-saber-4.png"/>
             </a>
             <div class="hero-foot">
               <nav class="tabs is-boxed is-fullwidht">
@@ -32,14 +32,11 @@
                     </div>
                     <li></li>
                     <li class="level-item has-text-centered">
-                      <img width="25px" src="https://image.flaticon.com/icons/svg/660/660770.svg" />
+                      <a @click="openSettings">
+                        <img width="25px" src="https://image.flaticon.com/icons/svg/660/660770.svg" />
+                      </a>
                     </li>
-                    <div class="select">
-                      <select>
-                        <option>Tema Claro</option>
-                        <option>Tema Escuro</option>
-                      </select>
-                    </div>
+                    
                   </ul>
                 </div>
               </nav>
@@ -58,18 +55,26 @@
       </section>
     </div>
   </div>
+  <div v-else>
+      <Settings @pass="closeSettings()"></Settings>
+  </div>
 </template>
 
 <script>
+import Settings from "./Settings.vue";
 export default {
   name: "HelloWorld",
+  components: {
+      Settings
+  },
   data() {
     return {
       next_scene: false,
       frame: [],
       oie: [0, 1, 2, 3],
       temaClaro: true,
-      temaEscuro: false
+      temaEscuro: false,
+      openedSettings: false
     };
   },
   methods: {
@@ -87,6 +92,12 @@ export default {
           this.$emit("next-scene", true);
         };
       }
+    },
+    openSettings() {
+        this.openedSettings = true
+    },
+    closeSettings() {
+        this.openedSettings = false
     }
   },
   props: {
@@ -101,6 +112,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+body {
+    z-index: 2;
+}
 h3 {
   margin: 40px 0 0;
 }

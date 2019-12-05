@@ -1,44 +1,44 @@
 <template>
   <div id="app">
-    <SceneManager></SceneManager>
     <div class="modal is-active" id="option">
-      <div class="modal-background"></div>
+      <div @click="closeSettings" class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">Opções</p>
-          <button class="delete" aria-label="close"></button>
+          <button @click="closeSettings" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
           <h2>Modo de leitura</h2>
-          <br />
-          <br />
+          <br>
+            <div class="controle">
+              <label class="radio">
+                <input type="radio" id="vertical" name="foobar" v-model="orientado">
+                Vertical
+              </label>
+              <br>
+              <label class="radio">
+                <input type="radio" id="horizontal" name="foobar" checked v-model="orientado">
+                Horizontal
+              </label>
+            </div>
 
-          <div class="controle">
-            <label class="radio">
-              <input type="radio" name="foobar" />
-              Vertical
-            </label>
-            <br />
-            <label class="radio">
-              <input type="radio" name="foobar" checked />
-              Horizontal
-            </label>
-          </div>
-
-          <hr />
+          <hr>
           <label class="checkbox">
-            Modo escuro
-            <input type="checkbox" />
+            Modo escuro 
+            <input type="checkbox" id="darkmode" @change="saveOptions">
           </label>
-
-          <hr />
+          <label for="checkbox">{{isdark}}</label>
+          <hr>
           <label class="checkbox">
-            Redimensionar imagens
-            <input type="checkbox" />
+            Redimensionar imagens 
+            <input type="checkbox" id="resizeimages" v-model="isresized">>
+            <label for="checkbox">{{isresized}}</label>
           </label>
         </section>
         <footer class="modal-card-foot">
-          <button class="button is-success">Salvar</button>
+          <button class="button is-success" @click="persist">
+            Salvar
+          </button>
         </footer>
       </div>
     </div>
@@ -47,43 +47,49 @@
 
 <script>
 export default {
-  data() {
-    return {
-      msg: "Gostaria de redimensionar automaticamente a imagem?",
-      msg2: "Qual tema de tela você quer?",
-      msg3: "Como você quer ler?"
-    };
+  name: "App",
+  data: {
+    orientado: "vertical",
+    isDark: false,
+    isResized: false
+  },
+  mounted(){
+    if (localStorage.orientado){
+      this.orientado = localStorage.orientado
+    }
+    if (localStorage.isDark){
+      this.isDark = localStorage.isDark
+    }if (localStorage.isResized){
+      this.isResized = localStorage.isResized
+    }
   },
   methods: {
+    saveOptions() {
+      this.isDark = true
+    },
+    persist() {
+      localStorage.orientado = this.orientado;
+      localStorage.isDark = this.isDark;
+      localStorage.isResized = this.isResized;
+      console.log(localStorage.orientado);
+      console.log(localStorage.isDark);
+      console.log(localStorage.isResized);
+    },
     closeSettings() {
-      this.$emit("read-mode", true);
+      this.$emit("pass", false);
     }
   }
 };
 </script>
 
-<style scoped>
-h1 {
-  font-family: cursive, optima;
-}
-
-button {
-  background-color: rgb(228, 83, 83);
-  color: rgb(0, 0, 0);
-  border: 3px mixed #ddd;
-  border-radius: 4px;
-  font-family: "Courier New", Courier, monospace;
-}
+<style>
 #app {
-  font-stretch: expanded;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #649b40;
-  background-color: #070c2b;
+  color: #2c3e50;
+  margin-top: 60px;
 }
-buttonX {
-  margin-left: 30px;
-}
+
 </style>

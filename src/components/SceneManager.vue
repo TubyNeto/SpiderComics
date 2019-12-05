@@ -1,10 +1,9 @@
 <template>
   <div>
-    <HelloWorld v-if="!passScene" @next-scene="passScene = $event" @frame="framer = $event"></HelloWorld>
-
-    <div v-else>
+    <HelloWorld @next-scene="passScene = $event" @frame="framer = $event"></HelloWorld>
+    <br>
+    <div v-if="passScene">
       <div v-if="readMode">
-        <button class="file is-primary" @click="aqui">CONFIGURAÇÕES</button>
         <Reader :frame="framer"></Reader>
       </div>
 
@@ -36,9 +35,6 @@ export default {
     pasScene() {
       this.passScene = true;
     },
-    aqui() {
-      this.readMode = false;
-    }
   }
 };
 </script>
