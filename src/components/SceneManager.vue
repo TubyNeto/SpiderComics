@@ -2,6 +2,9 @@
   <div>
     <HelloWorld @next-scene="passScene = $event" @frame="framer = $event"></HelloWorld>
     <br>
+    <div v-if="!passScene">
+      <InitialScreen></InitialScreen>
+    </div>
     <div v-if="passScene">
       <div v-if="readMode">
         <Reader :frame="framer"></Reader>
@@ -18,6 +21,8 @@
 import Reader from "./Reader.vue";
 import HelloWorld from "./HelloWorld.vue";
 import Settings from "./Settings.vue";
+import InitialScreen from './InitialScreen.vue'
+
 export default {
   data() {
     return {
@@ -29,7 +34,8 @@ export default {
   components: {
     Reader,
     HelloWorld,
-    Settings
+    Settings,
+    InitialScreen
   },
   methods: {
     pasScene() {

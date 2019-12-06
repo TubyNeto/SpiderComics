@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="modal is-active" id="option">
-      <div @click="closeSettings" class="modal-background"></div>
+      <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">Opções</p>
@@ -12,12 +12,12 @@
           <br>
             <div class="controle">
               <label class="radio">
-                <input type="radio" id="vertical" name="foobar" v-model="orientado">
+              <input type="radio" id="vertical" name="foobar" v-model="orientado" @change="isOrientado='vertical'">
                 Vertical
               </label>
               <br>
               <label class="radio">
-                <input type="radio" id="horizontal" name="foobar" checked v-model="orientado">
+                <input type="radio" id="horizontal" name="foobar" checked v-model="orientado" @change="isOrientado='horizontal'">
                 Horizontal
               </label>
             </div>
@@ -25,14 +25,12 @@
           <hr>
           <label class="checkbox">
             Modo escuro 
-            <input type="checkbox" id="darkmode" @change="saveOptions">
+            <input type="checkbox" id="darkmode" @change="saveDark">
           </label>
-          <label for="checkbox">{{isdark}}</label>
           <hr>
           <label class="checkbox">
             Redimensionar imagens 
-            <input type="checkbox" id="resizeimages" v-model="isresized">>
-            <label for="checkbox">{{isresized}}</label>
+            <input type="checkbox" id="resizeimages" @click="saveResize">
           </label>
         </section>
         <footer class="modal-card-foot">
@@ -49,9 +47,9 @@
 export default {
   name: "App",
   data: {
-    orientado: "vertical",
+    isOrientado: "",
     isDark: false,
-    isResized: false
+    isResized: false,
   },
   mounted(){
     if (localStorage.orientado){
@@ -64,16 +62,23 @@ export default {
     }
   },
   methods: {
-    saveOptions() {
-      this.isDark = true
+    //saveLandscape() {
+    //  this.orientado = "horizontal"
+    //},
+    saveDark() {
+      this.isDark = !this.isDark
+    },
+    saveResize() {
+      this.isResized = !this.isResized
     },
     persist() {
-      localStorage.orientado = this.orientado;
+      localStorage.isOrientado = this.isOrientado;
       localStorage.isDark = this.isDark;
       localStorage.isResized = this.isResized;
-      console.log(localStorage.orientado);
+      console.log(localStorage.isOrientado);
       console.log(localStorage.isDark);
       console.log(localStorage.isResized);
+      this.closeSettings()
     },
     closeSettings() {
       this.$emit("pass", false);
@@ -91,5 +96,4 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
 </style>
