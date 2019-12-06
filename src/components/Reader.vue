@@ -1,10 +1,9 @@
 <template>
   <div>
     <article class="tile is-child notification is-dark">
-
-    <div v-for='(item, index) in frame' :key="index">
-      <img :src="item">
-    </div>
+      <div v-for="(item, index) in frame" :key="index">
+        <img :src="item" />
+      </div>
     </article>
   </div>
 </template>
@@ -17,9 +16,8 @@ export default {
       required: false
     }
   },
-  data () {
-    return {
-    }
+  data() {
+    return {};
   }
 };
 </script>

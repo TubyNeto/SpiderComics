@@ -1,12 +1,12 @@
 <template>
   <div>
     <HelloWorld @next-scene="passScene = $event" @frame="framer = $event"></HelloWorld>
-    <br>
+    <br />
     <div v-if="!passScene">
-      <InitialScreen></InitialScreen>
+      <InitialScreen class="container is-fullhd"></InitialScreen>
     </div>
     <div v-if="passScene">
-      <div v-if="readMode">
+      <div v-if="readMode" class="container is-fullhd">
         <Reader :frame="framer"></Reader>
       </div>
 
@@ -21,7 +21,7 @@
 import Reader from "./Reader.vue";
 import HelloWorld from "./HelloWorld.vue";
 import Settings from "./Settings.vue";
-import InitialScreen from './InitialScreen.vue'
+import InitialScreen from "./InitialScreen.vue";
 
 export default {
   data() {
@@ -40,7 +40,7 @@ export default {
   methods: {
     pasScene() {
       this.passScene = true;
-    },
+    }
   }
 };
 </script>

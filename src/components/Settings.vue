@@ -46,14 +46,14 @@
 <script>
 export default {
   name: "App",
-  data: {
+  data:{
     isOrientado: "",
     isDark: false,
     isResized: false,
   },
   mounted(){
     if (localStorage.orientado){
-      this.orientado = localStorage.orientado
+      this.isOrientado = localStorage.isOrientado
     }
     if (localStorage.isDark){
       this.isDark = localStorage.isDark

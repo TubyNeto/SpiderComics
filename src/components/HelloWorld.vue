@@ -1,62 +1,59 @@
 <template>
-<div v-if="!openedSettings">
-    <div class="field has-addons has-addons-centered">
-      <section class="hero">
-        <div class="hero is-light">
-          <nav class="level">
-           <a class="navbar">
-              <img width="60px" src="https://diyuehb.com/images/angry-saber-4.png"/>
-            </a>
-            <div class="hero-foot">
-              <nav class="tabs is-boxed is-fullwidht">
-                <div class="container">
-                  <ul>
-                    <li class="level-item has-text-centered">
-                      <a class="link is-info">Inicio</a>
-                    </li>
-                    <li class="level-item has-text-centered">
-                      <a class="link is-info">Mangas Salvos</a>
-                    </li>
+  <div v-if="!openedSettings">
+    <div class="container is-fullhd">
+      <section class="hero is-light">
+        <nav class="level">
+          <a class="navbar">
+            <img width="60px" src="https://diyuehb.com/images/angry-saber-4.png" />
+          </a>
+          <div class="hero-foot">
+            <nav class="tabs is-boxed is-fullwidht">
+              <div class="container">
+                <ul>
+                  <li class="level-item has-text-centered">
+                    <a class="link is-info">Inicio</a>
+                  </li>
+                  <li class="level-item has-text-centered">
+                    <a class="link is-info">Mangas Salvos</a>
+                  </li>
 
-                    <div class="file is-normal is-link">
-                      <label class="file-label">
-                        <input
-                          class="file-input"
-                          type="file"
-                          name="resume"
-                          multiple
-                          @change="getImage"
-                        />
-                        <span class="file-cta">UPLOAD</span>
-                      </label>
-                    </div>
-                    <li></li>
-                    <li class="level-item has-text-centered">
-                      <a @click="openSettings">
-                        <img width="25px" src="https://image.flaticon.com/icons/svg/660/660770.svg" />
-                      </a>
-                    </li>
-                    
-                  </ul>
-                </div>
-              </nav>
-            </div>
-
-            <div class="level">
-              <div class="field has-addons">
-                <p class="control">
-                  <input class="input" type="text" placeholder="Pesquisar manga" />
-                </p>
-                <button class="button is-link is-outlined">Pesquisar</button>
+                  <div class="file is-normal is-link">
+                    <label class="file-label">
+                      <input
+                        class="file-input"
+                        type="file"
+                        name="resume"
+                        multiple
+                        @change="getImage"
+                      />
+                      <span class="file-cta">UPLOAD</span>
+                    </label>
+                  </div>
+                  <li></li>
+                  <li class="level-item has-text-centered">
+                    <a @click="openSettings">
+                      <img width="25px" src="https://image.flaticon.com/icons/svg/660/660770.svg" />
+                    </a>
+                  </li>
+                </ul>
               </div>
+            </nav>
+          </div>
+
+          <div class="level">
+            <div class="field has-addons">
+              <p class="control">
+                <input class="input" type="text" placeholder="Pesquisar manga" />
+              </p>
+              <button class="button is-link is-outlined">Pesquisar</button>
             </div>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </section>
     </div>
   </div>
   <div v-else>
-      <Settings @pass="closeSettings()"></Settings>
+    <Settings @pass="closeSettings()"></Settings>
   </div>
 </template>
 
@@ -65,7 +62,7 @@ import Settings from "./Settings.vue";
 export default {
   name: "HelloWorld",
   components: {
-      Settings
+    Settings
   },
   data() {
     return {
@@ -94,10 +91,10 @@ export default {
       }
     },
     openSettings() {
-        this.openedSettings = true
+      this.openedSettings = true;
     },
     closeSettings() {
-        this.openedSettings = false
+      this.openedSettings = false;
     }
   },
   props: {
@@ -113,7 +110,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 body {
-    z-index: 2;
+  z-index: 2;
 }
 h3 {
   margin: 40px 0 0;
