@@ -9,7 +9,6 @@
       <div v-if="readMode" class="container is-fullhd">
         <Reader :frame="framer"></Reader>
       </div>
-
       <div v-else>
         <Settings @read-mode="readMode = $event"></Settings>
       </div>

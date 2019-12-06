@@ -1,20 +1,17 @@
 <template>
-    <div>
-    <br>
-    <article class="tile is-child notification is-light">
-      Bem vindo!<br>
-      Os mangás serão carregados aqui ^^
-    </article>
-    <br>
+  <div>
+    <br />
+    <div class="notification is-info">
+      Bem vindo!
+      <br />Os mangás serão carregados aqui ^^
     </div>
+    <br />
+  </div>
 </template>
 
 <script>
-export default {
-    
-}
+export default {};
 </script>
 
 <style scoped>
-
 </style>

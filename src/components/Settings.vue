@@ -9,34 +9,45 @@
         </header>
         <section class="modal-card-body">
           <h2>Modo de leitura</h2>
-          <br>
-            <div class="controle">
-              <label class="radio">
-              <input type="radio" id="vertical" name="foobar" v-model="orientado" @change="isOrientado='vertical'">
-                Vertical
-              </label>
-              <br>
-              <label class="radio">
-                <input type="radio" id="horizontal" name="foobar" checked v-model="orientado" @change="isOrientado='horizontal'">
-                Horizontal
-              </label>
-            </div>
+          <br />
+          <div class="controle">
+            <label class="radio">
+              <input
+                type="radio"
+                id="vertical"
+                name="foobar"
+                v-model="orientado"
+                @change="isOrientado='vertical'"
+              />
+              Vertical
+            </label>
+            <br />
+            <label class="radio">
+              <input
+                type="radio"
+                id="horizontal"
+                name="foobar"
+                checked
+                v-model="orientado"
+                @change="isOrientado='horizontal'"
+              />
+              Horizontal
+            </label>
+          </div>
 
-          <hr>
+          <hr />
           <label class="checkbox">
-            Modo escuro 
-            <input type="checkbox" id="darkmode" @change="saveDark">
+            Modo escuro
+            <input type="checkbox" id="darkmode" @change="saveDark" />
           </label>
-          <hr>
+          <hr />
           <label class="checkbox">
-            Redimensionar imagens 
-            <input type="checkbox" id="resizeimages" @click="saveResize">
+            Redimensionar imagens
+            <input type="checkbox" id="resizeimages" @click="saveResize" />
           </label>
         </section>
         <footer class="modal-card-foot">
-          <button class="button is-success" @click="persist">
-            Salvar
-          </button>
+          <button class="button is-success" @click="persist">Salvar</button>
         </footer>
       </div>
     </div>
@@ -46,19 +57,22 @@
 <script>
 export default {
   name: "App",
-  data:{
+  data: function() {
+return {
     isOrientado: "",
     isDark: false,
-    isResized: false,
-  },
-  mounted(){
-    if (localStorage.orientado){
-      this.isOrientado = localStorage.isOrientado
+    isResized: false
+  };
+},
+  mounted() {
+    if (localStorage.orientado) {
+      this.isOrientado = localStorage.isOrientado;
     }
-    if (localStorage.isDark){
-      this.isDark = localStorage.isDark
-    }if (localStorage.isResized){
-      this.isResized = localStorage.isResized
+    if (localStorage.isDark) {
+      this.isDark = localStorage.isDark;
+    }
+    if (localStorage.isResized) {
+      this.isResized = localStorage.isResized;
     }
   },
   methods: {
@@ -66,19 +80,19 @@ export default {
     //  this.orientado = "horizontal"
     //},
     saveDark() {
-      this.isDark = !this.isDark
+      this.isDark = !this.isDark;
     },
     saveResize() {
-      this.isResized = !this.isResized
+      this.isResized = !this.isResized;
     },
     persist() {
       localStorage.isOrientado = this.isOrientado;
       localStorage.isDark = this.isDark;
       localStorage.isResized = this.isResized;
-      console.log(localStorage.isOrientado);
-      console.log(localStorage.isDark);
-      console.log(localStorage.isResized);
-      this.closeSettings()
+      //console.log(localStorage.isOrientado);
+      //console.log(localStorage.isDark);
+      //console.log(localStorage.isResized);
+      this.closeSettings();
     },
     closeSettings() {
       this.$emit("pass", false);
